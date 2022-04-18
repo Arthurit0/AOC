@@ -26,9 +26,13 @@ endwhile:
 	li $v0, 1 
 	syscall
 	
-	la $a0, endl # Pular Linha ("versão mais complexa")
-	li $v0, 4
-	syscall
+	# la $a0, endl # Pular Linha ("versão mais complexa")
+	# li $v0, 4
+	# syscall
+	
+        li $v0 11  # syscall 11: print a character based on its ASCII value
+    	li $a0 10  # ASCII value of a newline is "10"
+    	syscall
 		
 	div $s0, $s0, $s1 # Faz a média desta soma em $s0
 	move $a0, $s0
