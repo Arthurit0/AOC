@@ -1,3 +1,7 @@
+.data
+print:
+	.asciiz "O maior valor é "
+
 .text
 .globl main
 
@@ -10,6 +14,7 @@ main:
 	move $a1, $v0
 	jal greater
 	
+	move $a0, $v0
 	li $v0, 1
 	syscall
 
@@ -19,7 +24,9 @@ end:
 
 greater:
 	bgt $a0, $a1, true
-	move $t1, $a0
-	move $a0, $a1
+	move $v0, $a1
+	jr $ra
+	
 true:
+	move $v0, $a0
 	jr $ra
