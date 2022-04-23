@@ -1,3 +1,9 @@
+.data
+print1:
+	.asciiz  "O número possui "
+print2:
+	.asciiz " digito(s)"
+
 .text
 .globl main
 
@@ -7,15 +13,23 @@ main:
 	move $a0, $v0
 	jal digits
 	
-	move $s0, $v0
+	move $t0, $v0
 	
 	li $v0, 11  # syscall 11: Imprime um caractere baseado no seu valor ASCII
     	li $a0, 10  # O valor ASCII de uma nova linha é "10"
     	syscall
     	
-    	move $a0, $s0
+    	la $a0, print1
+    	li $v0, 4
+    	syscall
+    	
+    	move $a0, $t0
     	
     	li $v0, 1
+    	syscall
+    	
+    	la $a0, print2
+    	li $v0, 4
     	syscall
     	
 end:
