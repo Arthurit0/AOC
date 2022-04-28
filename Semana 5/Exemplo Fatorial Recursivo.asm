@@ -27,5 +27,5 @@ fatorial:
 	jr $ra
 	
 fat_parada:
-	ori $v0, 1
+	ori $v0, $zero, 1
 	jr $ra
