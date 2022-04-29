@@ -7,12 +7,8 @@ main:
 	move $a0, $v0 # Numero a contar
 
 	beqz $a0, end # Se for igual a zero programa para 
-			
-	li $v0, 5
-	syscall
-	move $a1, $v0 # Digito a contar
 	
-	jal count_digits
+	jal sum_digits
 	
 	move $a0, $v0
 	li $v0, 1
@@ -27,31 +23,27 @@ end:
 	li $v0, 10
 	syscall
 	
-count_digits:
-	move $s0, $a0 #Numero a verificar digitos 
-	
-while:
-	beq $s0, $zero, endwhile
+sum_digits:
+	beq $a0, $zero, end_recursion
 	# Guardando $ra
 	addi $sp $sp, -8
 	sw $ra, 4($sp)
 	
 	# Dividindo por 10 e verificando o resto
-	div $s0, $s0, 10
-	mfhi $s1 # movendo resto para $s1
-	sw $s1, 0($sp) # salvando resto
+	div $a0, $a0, 10
+	mfhi $s0 # movendo resto para $s0
+	sw $s0, 0($sp) # salvando resto
 	
-	jal while
+	jal sum_digits
 	
-	lw $s1, 0($sp)
+	lw $s0, 0($sp)
 	lw $ra, 4($sp)
 	addi $sp, $sp, 8
 	
-	bne $s1, $a1, notequal # verifica se o resto é igual ao número que desejamos verificar, se sim, contador +1
-	addi $v0, $v0, 1
-notequal:	
+	# Soma em $v0
+	add $v0, $v0, $s0
 	jr $ra
 	
-endwhile:
+end_recursion:
 	ori $v0, $zero, 0
 	jr $ra	

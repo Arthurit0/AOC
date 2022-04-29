@@ -6,7 +6,7 @@ main:
 	syscall
 	move $a0, $v0 # Numero a contar
 
-	beqz $a0, end # Se for igual a zero programa para 
+	beqz $a0, end # Se for igual a 0 programa para 
 			
 	li $v0, 5
 	syscall
@@ -30,8 +30,8 @@ end:
 count_digits:
 	move $s0, $a0 #Numero a verificar digitos 
 	
-while:
-	beq $s0, $zero, endwhile
+recursion:
+	beq $s0, $zero, end_recursion
 	# Guardando $ra
 	addi $sp $sp, -8
 	sw $ra, 4($sp)
@@ -52,6 +52,6 @@ while:
 notequal:	
 	jr $ra
 	
-endwhile:
+end_recursion:
 	ori $v0, $zero, 0
 	jr $ra	
