@@ -23,7 +23,6 @@ recursive_fib:
 	move $s2, $a0 # Copia número da n-ésima posição
 
 recursion:
-
 	beq $s2, $zero, end_recursion
 	addi $sp, $sp, -8
 	sw $ra, 0($sp)

@@ -41,7 +41,7 @@ recursion:
 	mfhi $s1 # movendo resto para $s1
 	sw $s1, 0($sp) # salvando resto
 	
-	jal while
+	jal recursion
 	
 	lw $s1, 0($sp)
 	lw $ra, 4($sp)
