@@ -1,2 +1,2 @@
 # AOC
-Repositório da Matéria de AOC
+Tarefas, listas e trabalhos de AOC serão armazenados aqui.
